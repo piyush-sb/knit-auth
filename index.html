@@ -9,9 +9,15 @@
     <script type="module" src="/src/my-element.ts"></script>
   </head>
   <body>
-    awdadadad
-    <my-element knitKey="anavada">
+    
+    <knit-auth knitKey="anavada" onRefreshKnit="myfn">
     <button slot="initiator">CLick me bro</button>
-    </my-element>
+    </knit-auth>
   </body>
+  <script>
+
+    function myfn(){
+      console.log('myFn called')
+    }
+  </script>
 </html>

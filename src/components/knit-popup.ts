@@ -79,42 +79,42 @@ export class KnitPopup extends LitElement {
       </div>
     `;
   }
-  private _togglePopup(e: Event | null) {
+  private _togglePopup(e?: Event) {
     e?.preventDefault();
     const newCustomEvent = new CustomEvent("togglePopup", {
       bubbles: true,
     });
     this.dispatchEvent(newCustomEvent);
   }
-  private _setSelectedCategory(e: CustomEvent | null): void {
+  private _setSelectedCategory(e?: CustomEvent): void {
     e?.preventDefault();
     console.log(e?.detail?.categoryTitle);
   }
-  private _nextStep(e: Event | null): void {
+  private _nextStep(e?: Event): void {
     e?.preventDefault();
     this.step = this.step + 1;
   }
 
-  private _prevStep(e: Event | null): void {
+  private _prevStep(e?: Event): void {
     e?.preventDefault();
     this.step = this.step - 1;
   }
 
-  private _refreshAccess(e: Event | null): void {
+  private _refreshAccess(e?: Event): void {
     e?.preventDefault();
     const newCustomEvent = new CustomEvent("refreshAccess", {
       bubbles: true,
     });
     this.dispatchEvent(newCustomEvent);
   }
-  private _forceExit(e: Event | null): void {
+  private _forceExit(e?: Event): void {
     this._togglePopup(e);
     this._refreshAccess(e);
   }
 
-  private _back(e: Event | null): void {
+  private _back(e?: Event): void {
     e?.preventDefault();
-    if (this.step > 0) this._prevStep(null);
+    if (this.step > 0) this._prevStep();
   }
 
   static styles = [

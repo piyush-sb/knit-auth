@@ -7,5 +7,6 @@ export default defineConfig({
       entry: 'src/my-element.ts',
       formats: ['es']
     },
-  }
+  },
+  
 })

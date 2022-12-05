@@ -10,8 +10,10 @@ import { CategoryPanelData } from "./interfaces";
  * @slot - This element has a slot
  * @csspart button - The button
  */
-@customElement("my-element")
-export class MyElement extends LitElement {
+
+const customConvertor = (str : string) => JSON.parse(str);
+@customElement("knit-auth")
+export class KnitAuth extends LitElement {
   /**
    * Copy for the read the docs hint.
    */
@@ -25,6 +27,8 @@ export class MyElement extends LitElement {
    */
   @property({ type: Number, state: true })
   count = 0;
+
+  @property({ type: customConvertor }) onRefreshKnit = function () {};
 
   @property({ type: String })
   knitKey = "";
@@ -57,30 +61,30 @@ export class MyElement extends LitElement {
     `;
   }
 
-  private _onInitiatorClick(e: Event): void {
-    e.preventDefault;
-    console.log("clicked", this.isReady);
+  private _onInitiatorClick(e?: Event): void {
+    e?.preventDefault;
+    console.log("clicked", this.isReady, "key", this.knitKey);
     if (this.isReady) {
-      this._togglePopup(null);
+      this._togglePopup();
     }
   }
-  private _togglePopup(e: Event | null): void {
+  private _togglePopup(e?: Event): void {
     e?.preventDefault();
     this.popupEnabled = !this.popupEnabled;
   }
 
-  private _refreshAccess(e: Event | null): void {
+  private _refreshAccess(e?: Event): void {
     e?.preventDefault();
-    const newCustomEvent = new CustomEvent("onRefreshKnitCall", {
-      bubbles: true,
-    });
-    this.dispatchEvent(newCustomEvent);
+    console.log("refresh event called ");
+    this.onRefreshKnit();
   }
   protected updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
+    console.log("updated called");
     if (_changedProperties.has("knitKey")) {
-      if (this.knitKey.length > 0) {
+      console.log("knitKey", this.knitKey);
+      if (this.knitKey.length > 0 && !this.isReady) {
         this.isReady = true;
       }
     }
@@ -90,8 +94,8 @@ export class MyElement extends LitElement {
       }
     }
 
-    if (_changedProperties.has("isReady")) {
-      console.log("isready Changed", this.isReady);
+    if (_changedProperties.has("onRefreshKnit")) {
+      console.log("knit", this.onRefreshKnit);
     }
   }
 
@@ -188,6 +192,6 @@ export class MyElement extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "my-element": MyElement;
+    "knit-auth": KnitAuth;
   }
 }
