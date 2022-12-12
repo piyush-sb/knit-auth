@@ -1,14 +1,14 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css , PropertyValueMap} from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { sharedStyles } from "../styles/sharedStyles";
 import { map } from "lit/directives/map.js";
 import "../components/category-panel";
-import { CategoryPanelData } from "../interfaces";
-
+import { CategoryPanelsObject } from "../interfaces";
 @customElement("category-selection")
 export class CategorySelection extends LitElement {
-  @property() categoryList: CategoryPanelData[] = [];
+  @property() categoryList: CategoryPanelsObject = {};
   protected render(): unknown {
+    console.log("catetgoryList", this.categoryList);
     return html`
       <div class="category-selection-step">
         <div class="category-selection-step-header">
@@ -21,12 +21,13 @@ export class CategorySelection extends LitElement {
         </div>
         <div class="category-panel-list">
           ${map(
-            this.categoryList,
-            (item, idx) => html`
+            Object.keys(this.categoryList),
+            (item) => html`
               <category-panel
-                @click=${this._setSelectedCategory(item.title)}
-                categoryData=${item}
-                key=${idx}
+                @onCategorySelect=${this._setSelectedCategory}
+                .categoryData=${this.categoryList[item]}
+                .categoryKey=${item}
+                .key=${item}
               ></category-panel>
             `
           )}
@@ -34,11 +35,20 @@ export class CategorySelection extends LitElement {
       </div>
     `;
   }
-  private _setSelectedCategory(titleStr: string) {
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    console.log("updated called in catgory selctiom", _changedProperties);
+    if (_changedProperties.has("categoryList")) {
+      console.log("appsData  state", this.categoryList);
+    }
+  }
+  private _setSelectedCategory(e?: CustomEvent) {
+    e?.preventDefault();
     const newCustomEvent = new CustomEvent("selectCategory", {
       bubbles: true,
       detail: {
-        categoryTitle: titleStr,
+        categoryTitle: e?.detail.categoryKey,
       },
     });
     this.dispatchEvent(newCustomEvent);

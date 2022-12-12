@@ -5,8 +5,28 @@ export interface IntegrationSummary {
   logo: string; // full size image url string
 }
 
-export interface CategoryPanelData {
-  title: string;
-  description: string;
-  integrationList: IntegrationSummary[];
+export interface IntegrationData {
+  title?: string; // just for testing
+  category: string[];
+  appId: string;
+  label: string;
+  logo: string;
+  oAuthUrl?: string;
+  authType: string;
+  setupDetails?: setupDetailItem[];
+}
+
+export interface CategoryPanelsObject {
+  [key: string]: IntegrationData[];
+}
+export interface setupDetailItem {
+  label: string;
+  id: string;
+  uiElementType: string;
+  uiElementDataType: string;
+  description?: string;
+  isRequired: boolean;
+  optionData?: string; // incorrect
+  default?: string;
+  tip?: string;
 }

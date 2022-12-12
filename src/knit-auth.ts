@@ -3,7 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import axios from "axios";
 import { sharedStyles } from "./styles/sharedStyles";
 import "./components/knit-popup";
-import { CategoryPanelData } from "./interfaces";
+import { CategoryPanelsObject, IntegrationData } from "./interfaces";
 /**
  * An example element.
  *
@@ -11,7 +11,7 @@ import { CategoryPanelData } from "./interfaces";
  * @csspart button - The button
  */
 
-const customConvertor = (str : string) => JSON.parse(str);
+const customConvertor = (str: string) => JSON.parse(str);
 @customElement("knit-auth")
 export class KnitAuth extends LitElement {
   /**
@@ -39,8 +39,8 @@ export class KnitAuth extends LitElement {
   @property({ type: Boolean, state: true })
   appsDataLoaded = false;
 
-  @property() appsData: CategoryPanelData[] = [];
-  @property({ type: Boolean, state: true }) appsApiError = false;
+  @property({ state: true }) appsData: CategoryPanelsObject = {};
+  @property({ type: Boolean, state: true }) protected appsApiError = false;
 
   render() {
     return html`
@@ -48,8 +48,9 @@ export class KnitAuth extends LitElement {
         ${this.popupEnabled
           ? html`
               <knit-popup
-                appsDataLoaded=${this.appsDataLoaded}
-                appsApiError=${this.appsApiError}
+                .appsDataLoaded=${this.appsDataLoaded}
+                .appsApiError=${this.appsApiError}
+                .appsData=${this.appsData}
                 @togglePopup=${this._togglePopup}
                 @refreshAccess=${this._refreshAccess}
               ></knit-popup>
@@ -78,10 +79,22 @@ export class KnitAuth extends LitElement {
     console.log("refresh event called ");
     this.onRefreshKnit();
   }
+
+  private _SuccessFetchData(): void {
+    const newCustomEvent = new CustomEvent("successFetchData", {
+      bubbles: true,
+      detail: {
+        id: "Piyush",
+      },
+    });
+    this.dispatchEvent(newCustomEvent);
+  }
+
   protected updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
-    console.log("updated called");
+    console.log("updated called in knit auth element", _changedProperties);
+
     if (_changedProperties.has("knitKey")) {
       console.log("knitKey", this.knitKey);
       if (this.knitKey.length > 0 && !this.isReady) {
@@ -97,19 +110,50 @@ export class KnitAuth extends LitElement {
     if (_changedProperties.has("onRefreshKnit")) {
       console.log("knit", this.onRefreshKnit);
     }
+    if (_changedProperties.has("appsApiError")) {
+      console.log(
+        "error state changed in parent",
+        _changedProperties,
+        this.appsApiError
+      );
+    }
   }
 
   private _fetchAppsData(): void {
+    if (this.appsDataLoaded) {
+      this.appsDataLoaded = !this.appsDataLoaded;
+    }
     console.log("Fetching Apps Data");
+    console.log("Apps api hit");
     axios
-      .get("apiCall")
+      .get(`https://run.mocky.io/v3/15bb0121-0ca5-41ba-9f82-991858fb957a`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((res) => {
         console.log(res?.data);
-        this.appsData = res?.data?.apps || [];
+        let integrationsArray = res?.data?.msg;
+        this._SuccessFetchData();
+        let categoryIntegrationsMap: CategoryPanelsObject = {};
+        integrationsArray.forEach((integration: IntegrationData) => {
+          integration.category.forEach((category: string) => {
+            if (categoryIntegrationsMap[category]) {
+              categoryIntegrationsMap[category] = [
+                ...categoryIntegrationsMap[category],
+                integration,
+              ];
+            } else {
+              categoryIntegrationsMap[category] = [integration];
+            }
+            console.log(categoryIntegrationsMap);
+            this.appsData = categoryIntegrationsMap;
+          });
+        });
       })
       .catch((err) => {
+        console.log("err", err);
         console.error(err);
-        this.appsApiError = true;
       })
       .finally(() => {
         this.appsDataLoaded = true;

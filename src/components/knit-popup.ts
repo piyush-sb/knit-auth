@@ -1,16 +1,21 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { CategoryPanelData } from "../interfaces";
+import { CategoryPanelsObject } from "../interfaces";
 import { sharedStyles } from "../styles/sharedStyles";
 import { choose } from "lit/directives/choose.js";
 import "../steps/CategorySelection";
 import "../steps/IntegrationSelection";
+import "../steps/IntegrationSetup";
 @customElement("knit-popup")
 export class KnitPopup extends LitElement {
   @property({ type: Number, state: true }) step = 0;
   @property({ type: Boolean }) appsDataLoaded = false;
-  @property() appsData: CategoryPanelData[] = [];
+  @property() appsData: CategoryPanelsObject = {};
   @property({ type: Boolean }) appsApiError = false;
+  @property({ type: String }) selectedCategory = "";
+  @property({ type: String }) selectedApp = "";
+
+  @property({})
   render() {
     return html`
       <div class="dialog-wrapper" role="dialog">
@@ -58,7 +63,7 @@ export class KnitPopup extends LitElement {
                       0,
                       () =>
                         html`<category-selection
-                          categoryList="${this.appsData}"
+                          .categoryList="${this.appsData}"
                           @nextStep=${this._nextStep}
                           @selectCategory=${this._setSelectedCategory}
                         ></category-selection>`,
@@ -68,7 +73,21 @@ export class KnitPopup extends LitElement {
                       () =>
                         html`<integration-selection
                           @nextStep=${this._nextStep}
+                          .integrationsList=${this.appsData[
+                            this.selectedCategory
+                          ]}
+                          @onIntegrationSelect=${this._setSelectedApp}
+                          .categoryKey=${this.selectedCategory}
                         ></integration-selection>`,
+                    ],
+                    [
+                      2,
+                      () =>
+                        html`<integration-setup
+                          .appData=${this.appsData[this.selectedCategory].find(
+                            (item) => item.appId == this.selectedApp
+                          )}
+                        ></integration-setup>`,
                     ],
                   ])}
                 `
@@ -79,6 +98,15 @@ export class KnitPopup extends LitElement {
       </div>
     `;
   }
+
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    console.log("updated called in popup", _changedProperties);
+    if (_changedProperties.has("step")) {
+      console.log("setp changed to", this.step);
+    }
+  }
   private _togglePopup(e?: Event) {
     e?.preventDefault();
     const newCustomEvent = new CustomEvent("togglePopup", {
@@ -87,8 +115,19 @@ export class KnitPopup extends LitElement {
     this.dispatchEvent(newCustomEvent);
   }
   private _setSelectedCategory(e?: CustomEvent): void {
+    console.log("Setting selected category", e?.detail.categoryTitle);
     e?.preventDefault();
     console.log(e?.detail?.categoryTitle);
+    this.selectedCategory = e?.detail.categoryTitle;
+    this._nextStep();
+  }
+
+  private _setSelectedApp(e?: CustomEvent): void {
+    console.log("Setting selected app", e?.detail.appId);
+
+    e?.preventDefault();
+    this.selectedApp = e?.detail.appId;
+    this._nextStep();
   }
   private _nextStep(e?: Event): void {
     e?.preventDefault();
