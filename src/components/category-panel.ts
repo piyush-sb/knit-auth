@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { sharedStyles } from "../styles/sharedStyles";
+// import { sharedStyles } from "../styles/sharedStyles";
 import { map } from "lit/directives/map.js";
 import { IntegrationData } from "../interfaces";
 import { CATEGORY_MAP } from "../utils/constants";
@@ -60,8 +60,11 @@ export class CategoryPanel extends LitElement {
     });
     this.dispatchEvent(newCustomEvent);
   }
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
   static styles = [
-    sharedStyles,
+    // sharedStyles,
     css`
       .category-panel-wrapper {
         border: 1px solid lightgrey;

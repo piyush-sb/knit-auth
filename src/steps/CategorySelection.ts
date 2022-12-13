@@ -1,6 +1,6 @@
 import { LitElement, html, css , PropertyValueMap} from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { sharedStyles } from "../styles/sharedStyles";
+// import { sharedStyles } from "../styles/sharedStyles";
 import { map } from "lit/directives/map.js";
 import "../components/category-panel";
 import { CategoryPanelsObject } from "../interfaces";
@@ -35,6 +35,11 @@ export class CategorySelection extends LitElement {
       </div>
     `;
   }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
+
   protected updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
@@ -55,7 +60,7 @@ export class CategorySelection extends LitElement {
   }
 
   static styles = [
-    sharedStyles,
+    // sharedStyles,
     css`
       category-selection-step-header {
         padding: 1rem 0;

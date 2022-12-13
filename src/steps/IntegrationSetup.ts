@@ -1,7 +1,7 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { IntegrationData } from "../interfaces";
-import { sharedStyles } from "../styles/sharedStyles";
+// import { sharedStyles } from "../styles/sharedStyles";
 @customElement("integration-setup")
 export class IntegrationSetup extends LitElement {
   @property() appData: IntegrationData = {
@@ -25,6 +25,10 @@ export class IntegrationSetup extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
   }
 
   //   protected _onQueryChange(e: InputEvent): void {
@@ -60,7 +64,7 @@ export class IntegrationSetup extends LitElement {
   //     }
   //   }
   static styles = [
-    sharedStyles,
+    // sharedStyles,
     css`
       integration-setup-step-header {
         padding: 1rem 0;
