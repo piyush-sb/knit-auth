@@ -2,7 +2,7 @@ import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { map } from "lit/directives/map.js";
 import { IntegrationData } from "../interfaces";
-import { sharedStyles } from "../styles/sharedStyles";
+// import { sharedStyles } from "../styles/sharedStyles";
 import { CATEGORY_MAP } from "../utils/constants";
 import { debounce } from "../utils/helpers";
 @customElement("integration-selection")
@@ -74,6 +74,11 @@ export class IntegrationSelection extends LitElement {
     });
     this.dispatchEvent(newCustomEvent);
   }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
+
   protected updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
@@ -83,7 +88,7 @@ export class IntegrationSelection extends LitElement {
     }
   }
   static styles = [
-    sharedStyles,
+    // sharedStyles,
     css`
       integration-selection-step-header {
         padding: 1rem 0;
