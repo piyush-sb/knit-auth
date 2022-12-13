@@ -1,9 +1,10 @@
-import { LitElement, css, html, PropertyValueMap } from "lit";
+import { LitElement, css, html, PropertyValueMap, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import axios from "axios";
-import { sharedStyles } from "./styles/sharedStyles";
+import sharedStyles from "./styles/sharedStyles.scss";
 import "./components/knit-popup";
 import { CategoryPanelsObject, IntegrationData } from "./interfaces";
+import Style1 from './styles/sass.scss';
 /**
  * An example element.
  *
@@ -56,7 +57,7 @@ export class KnitAuth extends LitElement {
               ></knit-popup>
             `
           : ""}
-        Hi
+        <h1>Hi</h1>
         ${html`<slot name="initiator" @click=${this._onInitiatorClick}></slot>`}
       </div>
     `;
@@ -160,7 +161,7 @@ export class KnitAuth extends LitElement {
       });
   }
   static styles = [
-    sharedStyles,
+    unsafeCSS(sharedStyles),
     css`
       :host {
         max-width: 1280px;
