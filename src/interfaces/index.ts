@@ -29,4 +29,5 @@ export interface setupDetailItem {
   optionData?: string; // incorrect
   default?: string;
   tip?: string;
+  isProtected: boolean;
 }

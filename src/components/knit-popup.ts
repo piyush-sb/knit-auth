@@ -1,7 +1,7 @@
 import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { CategoryPanelsObject } from "../interfaces";
-// import { sharedStyles } from "../styles/sharedStyles";
+import { sharedStyles } from "../styles/sharedStyles";
 import { choose } from "lit/directives/choose.js";
 import "../steps/CategorySelection";
 import "../steps/IntegrationSelection";
@@ -99,9 +99,9 @@ export class KnitPopup extends LitElement {
     `;
   }
 
-  protected createRenderRoot(): Element | ShadowRoot {
-    return this;
-  }
+  // protected createRenderRoot(): Element | ShadowRoot {
+  //   return this;
+  // }
 
   protected updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
@@ -161,7 +161,7 @@ export class KnitPopup extends LitElement {
   }
 
   static styles = [
-    // sharedStyles,
+    sharedStyles,
     css`
       .dialog-wrapper {
         height: 100vh;
@@ -182,7 +182,7 @@ export class KnitPopup extends LitElement {
         padding: 1rem;
         position: relative;
         min-height: 400px;
-        height: 100%;
+        overflow-y: auto;
         max-height: 720px;
         width: 375px;
         border-radius: 12px;

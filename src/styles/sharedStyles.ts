@@ -5,6 +5,9 @@ export const sharedStyles = css`
     display: flex;
     flex-wrap: wrap;
   }
+  .d-block {
+    display: block;
+  }
   .w-inherit {
     width: inherit;
   }
