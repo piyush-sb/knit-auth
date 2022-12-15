@@ -88,7 +88,7 @@ export class IntegrationSelection extends LitElement {
     }
   }
   static styles = [
-     sharedStyles,
+    sharedStyles,
     css`
       integration-selection-step-header {
         padding: 1rem 0;
@@ -99,20 +99,24 @@ export class IntegrationSelection extends LitElement {
       }
 
       .integration-selection-search {
-        margin: 2 rem;
+        margin: 2rem;
+        font-size: 1.2rem;
       }
       .integrations-wrapper {
         flex-wrap: wrap;
         padding: 1rem;
       }
       .integration-box {
-        margin: 1rem;
+        margin: 0.2rem;
         padding: 1rem;
         border: 1px solid lightgrey;
         border-radius: 5px;
       }
       .integration-box h5 {
         margin: 0;
+      }
+      .integration-box img {
+        width: 50px;
       }
     `,
   ];

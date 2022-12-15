@@ -4,7 +4,6 @@ import axios from "axios";
 import sharedStyles from "./styles/sharedStyles.scss";
 import "./components/knit-popup";
 import { CategoryPanelsObject, IntegrationData } from "./interfaces";
-import Style1 from './styles/sass.scss';
 /**
  * An example element.
  *
@@ -14,7 +13,7 @@ import Style1 from './styles/sass.scss';
 
 const customConvertor = (str: string) => JSON.parse(str);
 @customElement("knit-auth")
-export class KnitAuth extends LitElement {
+export  default class KnitAuth extends LitElement {
   /**
    * Copy for the read the docs hint.
    */
@@ -57,7 +56,6 @@ export class KnitAuth extends LitElement {
               ></knit-popup>
             `
           : ""}
-        <h1>Hi</h1>
         ${html`<slot name="initiator" @click=${this._onInitiatorClick}></slot>`}
       </div>
     `;
@@ -127,7 +125,7 @@ export class KnitAuth extends LitElement {
     console.log("Fetching Apps Data");
     console.log("Apps api hit");
     axios
-      .get(`https://run.mocky.io/v3/15bb0121-0ca5-41ba-9f82-991858fb957a`, {
+      .get(`https://run.mocky.io/v3/2390030a-d531-48ca-a690-81601a2b2e28`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -163,13 +161,10 @@ export class KnitAuth extends LitElement {
   static styles = [
     unsafeCSS(sharedStyles),
     css`
-      :host {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 2rem;
-        text-align: center;
+      slot[name="initiator"]::slotted(*) {
+        background: blue;
+        color: green;
       }
-
       .logo {
         height: 6em;
         padding: 1.5em;

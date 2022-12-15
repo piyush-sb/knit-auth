@@ -8,15 +8,31 @@
     <link rel="stylesheet" href="./src/index.css" />
     <script type="module" src="/src/knit-auth.ts"></script>
   </head>
+  <style>
+   .slot-btn{
+      color: blue ;
+      background: transparent ;
+      padding:0.5rem;
+      border-radius: 5px;
+    }
+  </style>
   <body>
-    <knit-auth knitKey="anavada" onRefreshKnit="myfn">
-    <button slot="initiator">CLick me bro</button>
+    <h3 style="width:100%;">Client.dev</h3><br/>
+    <knit-auth knitKey="anavada" onRefreshAccess="myfn" onSuccess="onSuccess">
+    <button slot="initiator" class="slot-btn">Integrate via Knit</button>
     </knit-auth>
   </body>
+
   <script>
 
     function myfn(){
-      console.log('myFn called')
+        // axios.get
+
+  
+    }
+
+    function onSuccess(e){
+      // save  integration token 
     }
   </script>
 </html>

@@ -91,7 +91,7 @@ export class KnitPopup extends LitElement {
                     ],
                   ])}
                 `
-            : html`<div class="full-page-wrapper  align-items-center">
+            : html`<div class="full-page-wrapper d-flex align-items-center">
                 <h4 class="w-100 text-center">Loading...</h4>
               </div>`}
         </div>
@@ -195,7 +195,7 @@ export class KnitPopup extends LitElement {
         padding: 0.2rem;
       }
       .full-page-wrapper {
-        height: 100%;
+        min-height: inherit;
       }
 
       .exit-btn-wrapper {
