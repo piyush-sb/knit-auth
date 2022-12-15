@@ -2,7 +2,7 @@ import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { map } from "lit/directives/map.js";
 import { IntegrationData } from "../interfaces";
-import { sharedStyles } from "../styles/sharedStyles";
+// import { sharedStyles } from "../styles/sharedStyles";
 import { CATEGORY_MAP } from "../utils/constants";
 import { debounce } from "../utils/helpers";
 @customElement("integration-selection")
@@ -75,9 +75,9 @@ export class IntegrationSelection extends LitElement {
     this.dispatchEvent(newCustomEvent);
   }
 
-  // protected createRenderRoot(): Element | ShadowRoot {
-  //   return this;
-  // }
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
 
   protected updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
@@ -88,37 +88,33 @@ export class IntegrationSelection extends LitElement {
     }
   }
   static styles = [
-    sharedStyles,
-    css`
-      integration-selection-step-header {
-        padding: 1rem 0;
-      }
-      .integration-selection-title {
-        font-size: 2.5rem;
-        padding: 1rem 0;
-      }
+    // sharedStyles,
+    // css`
+    //   integration-selection-step-header {
+    //     padding: 1rem 0;
+    //   }
+    //   .integration-selection-title {
+    //     font-size: 2.5rem;
+    //     padding: 1rem 0;
+    //   }
 
-      .integration-selection-search {
-        margin: 2rem;
-        font-size: 1.2rem;
-      }
-      .integrations-wrapper {
-        flex-wrap: wrap;
-        padding: 1rem;
-      }
-      .integration-box {
-        margin: 0.2rem;
-        padding: 1rem;
-        border: 1px solid lightgrey;
-        border-radius: 5px;
-      }
-      .integration-box h5 {
-        margin: 0;
-      }
-      .integration-box img {
-        width: 50px;
-      }
-    `,
+    //   .integration-selection-search {
+    //     margin: 2 rem;
+    //   }
+    //   .integrations-wrapper {
+    //     flex-wrap: wrap;
+    //     padding: 1rem;
+    //   }
+    //   .integration-box {
+    //     margin: 1rem;
+    //     padding: 1rem;
+    //     border: 1px solid lightgrey;
+    //     border-radius: 5px;
+    //   }
+    //   .integration-box h5 {
+    //     margin: 0;
+    //   }
+    // `,
   ];
 }
 

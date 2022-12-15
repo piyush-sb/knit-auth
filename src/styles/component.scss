@@ -1,0 +1,147 @@
+.category-panel-wrapper {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  .integrations-logos {
+    padding: 0.5rem 0.3rem;
+  }
+  .integration-logo {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    margin: 0 0.25rem;
+    width: 50px;
+    height: 50px;
+    position: relative;
+  }
+  .integration-logo img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  .dialog-wrapper {
+    height: 100vh;
+    width: 100vw;
+    z-index: 200;
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+
+    background-color: rgba(33, 33, 33, 0.46);
+    border-color: rgb(33, 33, 33);
+  }
+  .popup-container {
+    background: white;
+    padding: 1rem;
+    position: relative;
+    min-height: 400px;
+    overflow-y: auto;
+    max-height: 720px;
+    width: 375px;
+    border-radius: 12px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 20px, rgb(0 0 0 / 10%) 0px 2px 5px;
+  }
+  .close-btn {
+    float: right;
+    color: grey;
+    cursor: pointer;
+    padding: 0.2rem;
+  }
+  .full-page-wrapper {
+    min-height: inherit;
+  }
+
+  .exit-btn-wrapper {
+    padding: 1rem 0;
+    border: 2px solid transparent;
+    border-radius: 5px;
+  }
+  .exit-btn-wrapper:hover {
+    border-color: lightgrey;
+  }
+  .knit-form-ele {
+    padding: 1rem 0.5rem;
+  }
+
+  .knit-form-ele label,
+  knit-form-ele input {
+    width: 100%;
+  }
+  .knit-form-ele label {
+    font-size: 1.1rem;
+  }
+  .knit-form-ele input {
+    font-size: 1.2rem;
+  }
+  .category-selection-step-header {
+    padding: 1rem 0;
+  }
+  .category-selection-title {
+    font-size: 2.5rem;
+    padding: 1rem 0;
+  }
+  .integration-selection-step-header {
+    padding: 1rem 0;
+  }
+  .integration-selection-title {
+    font-size: 2.5rem;
+    padding: 1rem 0;
+  }
+
+  .integration-selection-search {
+    margin: 2rem;
+    font-size: 1.2rem;
+  }
+  .integrations-wrapper {
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  .integration-box {
+    margin: 0.2rem;
+    padding: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+  }
+  .integration-box h5 {
+    margin: 0;
+  }
+  .integration-box img {
+    width: 50px;
+  }
+  .integration-setup-step-header {
+    padding: 1rem 0;
+  }
+  .integration-setup-title {
+    font-size: 2rem;
+    padding: 0.5rem 0;
+  }
+  .integration-setup-logo img {
+    width: 80px;
+  }
+  .integration-setup-search {
+    margin: 2 rem;
+  }
+  .integrations-wrapper {
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  .integration-box {
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+  }
+  .integration-box h5 {
+    margin: 0;
+  }
