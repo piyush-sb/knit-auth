@@ -1,7 +1,7 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { IntegrationData } from "../interfaces";
-import { sharedStyles } from "../styles/sharedStyles";
+// import { sharedStyles } from "../styles/sharedStyles";
 import "../components/setup-form";
 import { choose } from "lit-html/directives/choose.js";
 @customElement("integration-setup")
@@ -39,40 +39,40 @@ export class IntegrationSetup extends LitElement {
     `;
   }
 
-  // protected createRenderRoot(): Element | ShadowRoot {
-  //   return this;
-  // }
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
 
   static styles = [
-    sharedStyles,
-    css`
-      integration-setup-step-header {
-        padding: 1rem 0;
-      }
-      .integration-setup-title {
-        font-size: 2rem;
-        padding: 0.5rem 0;
-      }
-      .integration-setup-logo img {
-        width: 80px;
-      }
-      .integration-setup-search {
-        margin: 2 rem;
-      }
-      .integrations-wrapper {
-        flex-wrap: wrap;
-        padding: 1rem;
-      }
-      .integration-box {
-        margin: 1rem;
-        padding: 1rem;
-        border: 1px solid lightgrey;
-        border-radius: 5px;
-      }
-      .integration-box h5 {
-        margin: 0;
-      }
-    `,
+    // sharedStyles,
+    // css`
+    //   integration-setup-step-header {
+    //     padding: 1rem 0;
+    //   }
+    //   .integration-setup-title {
+    //     font-size: 2rem;
+    //     padding: 0.5rem 0;
+    //   }
+    //   .integration-setup-logo img {
+    //     width: 80px;
+    //   }
+    //   .integration-setup-search {
+    //     margin: 2 rem;
+    //   }
+    //   .integrations-wrapper {
+    //     flex-wrap: wrap;
+    //     padding: 1rem;
+    //   }
+    //   .integration-box {
+    //     margin: 1rem;
+    //     padding: 1rem;
+    //     border: 1px solid lightgrey;
+    //     border-radius: 5px;
+    //   }
+    //   .integration-box h5 {
+    //     margin: 0;
+    //   }
+    // `,
   ];
 }
 

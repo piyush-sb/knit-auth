@@ -1,7 +1,7 @@
 import { LitElement, html, css, PropertyValueMap } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { CategoryPanelsObject } from "../interfaces";
-import { sharedStyles } from "../styles/sharedStyles";
+// import { sharedStyles } from "../styles/sharedStyles";
 import { choose } from "lit/directives/choose.js";
 import "../steps/CategorySelection";
 import "../steps/IntegrationSelection";
@@ -99,9 +99,9 @@ export class KnitPopup extends LitElement {
     `;
   }
 
-  // protected createRenderRoot(): Element | ShadowRoot {
-  //   return this;
-  // }
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
 
   protected updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
@@ -161,52 +161,52 @@ export class KnitPopup extends LitElement {
   }
 
   static styles = [
-    sharedStyles,
-    css`
-      .dialog-wrapper {
-        height: 100vh;
-        width: 100vw;
-        z-index: 200;
-        position: absolute;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        top: 0;
+    // sharedStyles,
+    // css`
+    //   .dialog-wrapper {
+    //     height: 100vh;
+    //     width: 100vw;
+    //     z-index: 200;
+    //     position: absolute;
+    //     left: 0;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     top: 0;
 
-        background-color: rgba(33, 33, 33, 0.46);
-        border-color: rgb(33, 33, 33);
-      }
-      .popup-container {
-        background: white;
-        padding: 1rem;
-        position: relative;
-        min-height: 400px;
-        overflow-y: auto;
-        max-height: 720px;
-        width: 375px;
-        border-radius: 12px;
-        box-shadow: rgb(0 0 0 / 15%) 0px 2px 20px, rgb(0 0 0 / 10%) 0px 2px 5px;
-      }
-      .close-btn {
-        float: right;
-        color: grey;
-        cursor: pointer;
-        padding: 0.2rem;
-      }
-      .full-page-wrapper {
-        min-height: inherit;
-      }
+    //     background-color: rgba(33, 33, 33, 0.46);
+    //     border-color: rgb(33, 33, 33);
+    //   }
+    //   .popup-container {
+    //     background: white;
+    //     padding: 1rem;
+    //     position: relative;
+    //     min-height: 400px;
+    //     height: 100%;
+    //     max-height: 720px;
+    //     width: 375px;
+    //     border-radius: 12px;
+    //     box-shadow: rgb(0 0 0 / 15%) 0px 2px 20px, rgb(0 0 0 / 10%) 0px 2px 5px;
+    //   }
+    //   .close-btn {
+    //     float: right;
+    //     color: grey;
+    //     cursor: pointer;
+    //     padding: 0.2rem;
+    //   }
+    //   .full-page-wrapper {
+    //     height: 100%;
+    //   }
 
-      .exit-btn-wrapper {
-        padding: 1rem 0;
-        border: 2px solid transparent;
-        border-radius: 5px;
-      }
-      .exit-btn-wrapper:hover {
-        border-color: lightgrey;
-      }
-    `,
+    //   .exit-btn-wrapper {
+    //     padding: 1rem 0;
+    //     border: 2px solid transparent;
+    //     border-radius: 5px;
+    //   }
+    //   .exit-btn-wrapper:hover {
+    //     border-color: lightgrey;
+    //   }
+    // `,
   ];
 }
 

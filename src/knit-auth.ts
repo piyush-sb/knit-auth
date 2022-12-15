@@ -1,7 +1,7 @@
 import { LitElement, css, html, PropertyValueMap, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import axios from "axios";
-import sharedStyles from "./styles/sharedStyles.scss";
+import allStyles from "./styles/all.scss";
 import "./components/knit-popup";
 import { CategoryPanelsObject, IntegrationData } from "./interfaces";
 /**
@@ -56,6 +56,7 @@ export  default class KnitAuth extends LitElement {
               ></knit-popup>
             `
           : ""}
+        <h1>Hi</h1>
         ${html`<slot name="initiator" @click=${this._onInitiatorClick}></slot>`}
       </div>
     `;
@@ -159,7 +160,7 @@ export  default class KnitAuth extends LitElement {
       });
   }
   static styles = [
-    unsafeCSS(sharedStyles),
+    unsafeCSS(allStyles),
     css`
       slot[name="initiator"]::slotted(*) {
         background: blue;

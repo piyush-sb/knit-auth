@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { sharedStyles } from "../styles/sharedStyles";
+// import { sharedStyles } from "../styles/sharedStyles";
 import { map } from "lit/directives/map.js";
 import { IntegrationData } from "../interfaces";
 import { CATEGORY_MAP } from "../utils/constants";
@@ -63,42 +63,27 @@ export class CategoryPanel extends LitElement {
     });
     this.dispatchEvent(newCustomEvent);
   }
-  // protected createRenderRoot(): Element | ShadowRoot {
-  //   return this;
-  // }
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
   static styles = [
-    sharedStyles,
-    css`
-      .category-panel-wrapper {
-        border: 1px solid lightgrey;
-        border-radius: 5px;
-        width: 100%;
-      }
+    // sharedStyles,
+    // css`
+    //   .category-panel-wrapper {
+    //     border: 1px solid lightgrey;
+    //     border-radius: 5px;
+    //     width: 100%;
 
-      .integrations-logos {
-        padding: 0.5rem 0.3rem;
-      }
-      .integration-logo {
-        border: 1px solid lightgrey;
-        border-radius: 5px;
-        margin: 0 0.25rem;
-        width: 50px;
-        height: 50px;
-        position: relative;
-      }
-      .integration-logo img {
-        max-height: 100%;
-        max-width: 100%;
-        width: auto;
-        height: auto;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-      }
-    `,
+    //   }
+
+    //   .integrations-logos {
+    //     padding: 0.5rem 0.3rem;
+    //   }
+    //   .integration-logo {
+    //     border: 1px solid lightgrey;
+    //     border-raidus: 5px;
+    //   }
+    // `,
   ];
 }
 
